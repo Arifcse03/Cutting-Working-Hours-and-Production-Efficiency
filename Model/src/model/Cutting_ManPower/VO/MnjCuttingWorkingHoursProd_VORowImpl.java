@@ -1,5 +1,7 @@
 package model.Cutting_ManPower.VO;
 
+import java.math.BigDecimal;
+
 import model.Cutting_ManPower.EO.MnjCuttingWorkingHoursProd_EOImpl;
 
 import oracle.jbo.RowSet;
@@ -436,6 +438,83 @@ public class MnjCuttingWorkingHoursProd_VORowImpl extends ViewRowImpl {
             }
         }
         ,
+        SystemId {
+            public Object get(MnjCuttingWorkingHoursProd_VORowImpl obj) {
+                return obj.getSystemId();
+            }
+
+            public void put(MnjCuttingWorkingHoursProd_VORowImpl obj,
+                            Object value) {
+                obj.setSystemId((BigDecimal)value);
+            }
+        }
+        ,
+        BuyerNew {
+            public Object get(MnjCuttingWorkingHoursProd_VORowImpl obj) {
+                return obj.getBuyerNew();
+            }
+
+            public void put(MnjCuttingWorkingHoursProd_VORowImpl obj,
+                            Object value) {
+                obj.setBuyerNew((String)value);
+            }
+        }
+        ,
+        StyleNew {
+            public Object get(MnjCuttingWorkingHoursProd_VORowImpl obj) {
+                return obj.getStyleNew();
+            }
+
+            public void put(MnjCuttingWorkingHoursProd_VORowImpl obj,
+                            Object value) {
+                obj.setStyleNew((String)value);
+            }
+        }
+        ,
+        SeasonNew {
+            public Object get(MnjCuttingWorkingHoursProd_VORowImpl obj) {
+                return obj.getSeasonNew();
+            }
+
+            public void put(MnjCuttingWorkingHoursProd_VORowImpl obj,
+                            Object value) {
+                obj.setSeasonNew((String)value);
+            }
+        }
+        ,
+        ColorNew {
+            public Object get(MnjCuttingWorkingHoursProd_VORowImpl obj) {
+                return obj.getColorNew();
+            }
+
+            public void put(MnjCuttingWorkingHoursProd_VORowImpl obj,
+                            Object value) {
+                obj.setColorNew((String)value);
+            }
+        }
+        ,
+        WashNew {
+            public Object get(MnjCuttingWorkingHoursProd_VORowImpl obj) {
+                return obj.getWashNew();
+            }
+
+            public void put(MnjCuttingWorkingHoursProd_VORowImpl obj,
+                            Object value) {
+                obj.setWashNew((String)value);
+            }
+        }
+        ,
+        PocId {
+            public Object get(MnjCuttingWorkingHoursProd_VORowImpl obj) {
+                return obj.getPocId();
+            }
+
+            public void put(MnjCuttingWorkingHoursProd_VORowImpl obj,
+                            Object value) {
+                obj.setPocId((BigDecimal)value);
+            }
+        }
+        ,
         SAM_LOV_VO1 {
             public Object get(MnjCuttingWorkingHoursProd_VORowImpl obj) {
                 return obj.getSAM_LOV_VO1();
@@ -514,6 +593,13 @@ public class MnjCuttingWorkingHoursProd_VORowImpl extends ViewRowImpl {
     public static final int CURRENTSTYLE = AttributesEnum.CurrentStyle.index();
     public static final int CURRENTSEASON = AttributesEnum.CurrentSeason.index();
     public static final int WASH = AttributesEnum.Wash.index();
+    public static final int SYSTEMID = AttributesEnum.SystemId.index();
+    public static final int BUYERNEW = AttributesEnum.BuyerNew.index();
+    public static final int STYLENEW = AttributesEnum.StyleNew.index();
+    public static final int SEASONNEW = AttributesEnum.SeasonNew.index();
+    public static final int COLORNEW = AttributesEnum.ColorNew.index();
+    public static final int WASHNEW = AttributesEnum.WashNew.index();
+    public static final int POCID = AttributesEnum.PocId.index();
     public static final int SAM_LOV_VO1 = AttributesEnum.SAM_LOV_VO1.index();
 
     /**
@@ -1136,6 +1222,118 @@ public class MnjCuttingWorkingHoursProd_VORowImpl extends ViewRowImpl {
      */
     public void setWash(String value) {
         setAttributeInternal(WASH, value);
+    }
+
+    /**
+     * Gets the attribute value for SYSTEM_ID using the alias name SystemId.
+     * @return the SYSTEM_ID
+     */
+    public BigDecimal getSystemId() {
+        return (BigDecimal) getAttributeInternal(SYSTEMID);
+    }
+
+    /**
+     * Sets <code>value</code> as attribute value for SYSTEM_ID using the alias name SystemId.
+     * @param value value to set the SYSTEM_ID
+     */
+    public void setSystemId(BigDecimal value) {
+        setAttributeInternal(SYSTEMID, value);
+    }
+
+    /**
+     * Gets the attribute value for the calculated attribute BuyerNew.
+     * @return the BuyerNew
+     */
+    public String getBuyerNew() {
+        return (String) getAttributeInternal(BUYERNEW);
+    }
+
+    /**
+     * Sets <code>value</code> as the attribute value for the calculated attribute BuyerNew.
+     * @param value value to set the  BuyerNew
+     */
+    public void setBuyerNew(String value) {
+        setAttributeInternal(BUYERNEW, value);
+    }
+
+    /**
+     * Gets the attribute value for the calculated attribute StyleNew.
+     * @return the StyleNew
+     */
+    public String getStyleNew() {
+        return (String) getAttributeInternal(STYLENEW);
+    }
+
+    /**
+     * Sets <code>value</code> as the attribute value for the calculated attribute StyleNew.
+     * @param value value to set the  StyleNew
+     */
+    public void setStyleNew(String value) {
+        setAttributeInternal(STYLENEW, value);
+    }
+
+    /**
+     * Gets the attribute value for the calculated attribute SeasonNew.
+     * @return the SeasonNew
+     */
+    public String getSeasonNew() {
+        return (String) getAttributeInternal(SEASONNEW);
+    }
+
+    /**
+     * Sets <code>value</code> as the attribute value for the calculated attribute SeasonNew.
+     * @param value value to set the  SeasonNew
+     */
+    public void setSeasonNew(String value) {
+        setAttributeInternal(SEASONNEW, value);
+    }
+
+    /**
+     * Gets the attribute value for the calculated attribute ColorNew.
+     * @return the ColorNew
+     */
+    public String getColorNew() {
+        return (String) getAttributeInternal(COLORNEW);
+    }
+
+    /**
+     * Sets <code>value</code> as the attribute value for the calculated attribute ColorNew.
+     * @param value value to set the  ColorNew
+     */
+    public void setColorNew(String value) {
+        setAttributeInternal(COLORNEW, value);
+    }
+
+    /**
+     * Gets the attribute value for the calculated attribute WashNew.
+     * @return the WashNew
+     */
+    public String getWashNew() {
+        return (String) getAttributeInternal(WASHNEW);
+    }
+
+    /**
+     * Sets <code>value</code> as the attribute value for the calculated attribute WashNew.
+     * @param value value to set the  WashNew
+     */
+    public void setWashNew(String value) {
+        setAttributeInternal(WASHNEW, value);
+    }
+
+    /**
+     * Gets the attribute value for the calculated attribute PocId.
+     * @return the PocId
+     */
+    public BigDecimal getPocId() {
+        return (BigDecimal) getAttributeInternal(POCID);
+    }
+
+    /**
+     * Sets <code>value</code> as the attribute value for the calculated attribute PocId.
+     * @param value value to set the  PocId
+     */
+    public void setPocId(BigDecimal value) {
+        setAttributeInternal(POCID, value);
     }
 
     /**

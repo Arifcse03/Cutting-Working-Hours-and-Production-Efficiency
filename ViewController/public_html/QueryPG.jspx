@@ -52,7 +52,8 @@
               <af:column sortProperty="DocumentNo" filterable="true"
                          sortable="true" headerText="Document No" id="c5"
                          align="center" filterFeatures="caseInsensitive">
-                <af:outputText value="#{row.DocumentNo}" id="ot2"/>
+                <af:commandLink id="ot2" text="#{row.DocumentNo}"
+                                action="GotoCreate"/>
               </af:column>
               <af:column sortProperty="DocumentDate" filterable="true"
                          sortable="true" headerText="Document Date" id="c3"

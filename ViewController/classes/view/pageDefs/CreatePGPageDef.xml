@@ -108,6 +108,13 @@
           <Item Value="CurrentStyle"/>
           <Item Value="CurrentSeason"/>
           <Item Value="Wash"/>
+          <Item Value="SystemId"/>
+          <Item Value="BuyerNew"/>
+          <Item Value="SeasonNew"/>
+          <Item Value="ColorNew"/>
+          <Item Value="WashNew"/>
+          <Item Value="PocId"/>
+          <Item Value="StyleNew"/>
         </AttrNames>
       </nodeDefinition>
     </tree>

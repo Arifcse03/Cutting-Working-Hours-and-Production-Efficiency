@@ -20,40 +20,11 @@
     </SchemaBasedProperties>
   </Properties>
   <Variable
-    Name="p_style"
+    Name="system_id"
     Kind="where"
-    Type="java.lang.String">
-    <Properties>
-      <SchemaBasedProperties>
-        <DISPLAYHINT
-          Value="Hide"/>
-      </SchemaBasedProperties>
-    </Properties>
-  </Variable>
-  <Variable
-    Name="p_season"
-    Kind="where"
-    Type="java.lang.String">
-    <Properties>
-      <SchemaBasedProperties>
-        <DISPLAYHINT
-          Value="Hide"/>
-      </SchemaBasedProperties>
-    </Properties>
-  </Variable>
-  <Variable
-    Name="p_buyer_id"
-    Kind="where"
-    Type="java.lang.String">
-    <Properties>
-      <SchemaBasedProperties>
-        <DISPLAYHINT
-          Value="Hide"/>
-      </SchemaBasedProperties>
-    </Properties>
-  </Variable>
+    Type="java.lang.String"/>
   <SQLQuery>
-    <![CDATA[SELECT DISTINCT oph.header_no, NVL (opl.option_no, '-') option_no,
+    <![CDATA[/*SELECT DISTINCT oph.header_no, NVL (opl.option_no, '-') option_no,
                 NVL (opl.version_no, '-') version_no,
                 SUM (opl.total_sam_value) sam
            FROM mnj_mfg_operation_master_h oph,
@@ -68,7 +39,26 @@
                 NVL (opl.version_no, '-'),
                 oph.style_name,
                 oph.season,
-                oph.customer_id]]>
+                oph.customer_id*/
+
+
+/* Formatted on 4/20/2021 2:39:15 PM (QP5 v5.256.13226.35510)  by wasi sir */
+  SELECT DISTINCT oph.header_no,
+                  NVL (opl.option_no, '-') option_no,
+                  NVL (opl.version_no, '-') version_no,
+                  SUM (opl.total_sam_value) sam,
+                  b.system_id
+    FROM mnj_mfg_operation_master_h oph,
+         mnj_mfg_operation_master_l opl,
+         XX_ORDER_INFO_V B
+   WHERE     oph.header_id = opl.header_id
+         AND OPH.POC_ID = B.POC_ID
+         AND opl.dept_name = 'Cutting'
+         AND b.system_id = :system_id
+GROUP BY oph.header_no,
+         NVL (opl.option_no, '-'),
+         NVL (opl.version_no, '-'),
+         system_id]]>
   </SQLQuery>
   <ViewAttribute
     Name="HeaderNo"
@@ -161,6 +151,56 @@
       </SchemaBasedProperties>
     </Properties>
   </ViewAttribute>
+  <ViewAttribute
+    Name="SystemId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="SYSTEM_ID"
+    Expression="SYSTEM_ID"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="39"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewCriteria
+    Name="SAM_LOV_VOCriteria"
+    ViewObjectName="model.Cutting_ManPower.LOV.SAM_LOV_VO"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="vcrow31"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="SystemId"
+        ViewAttribute="SystemId"
+        Operator="="
+        Conjunction="AND"
+        Value=":system_id"
+        Required="Optional"
+        IsBindVarValue="true"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
   <ResourceBundle>
     <PropertiesBundle
       PropertiesFile="model.Cutting_ManPower.ModelBundle"/>

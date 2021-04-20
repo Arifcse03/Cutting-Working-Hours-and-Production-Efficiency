@@ -1,5 +1,7 @@
 package model.Cutting_ManPower.EO;
 
+import java.math.BigDecimal;
+
 import java.sql.SQLException;
 
 import java.util.Map;
@@ -506,6 +508,17 @@ public class MnjCuttingWorkingHoursProd_EOImpl extends EntityImpl {
             }
         }
         ,
+        SystemId {
+            public Object get(MnjCuttingWorkingHoursProd_EOImpl obj) {
+                return obj.getSystemId();
+            }
+
+            public void put(MnjCuttingWorkingHoursProd_EOImpl obj,
+                            Object value) {
+                obj.setSystemId((BigDecimal)value);
+            }
+        }
+        ,
         MnjCuttingWorkingHoursH_EO {
             public Object get(MnjCuttingWorkingHoursProd_EOImpl obj) {
                 return obj.getMnjCuttingWorkingHoursH_EO();
@@ -585,6 +598,7 @@ public class MnjCuttingWorkingHoursProd_EOImpl extends EntityImpl {
     public static final int CURRENTSTYLE = AttributesEnum.CurrentStyle.index();
     public static final int CURRENTSEASON = AttributesEnum.CurrentSeason.index();
     public static final int WASH = AttributesEnum.Wash.index();
+    public static final int SYSTEMID = AttributesEnum.SystemId.index();
     public static final int MNJCUTTINGWORKINGHOURSH_EO = AttributesEnum.MnjCuttingWorkingHoursH_EO.index();
 
     /**
@@ -1210,6 +1224,22 @@ public class MnjCuttingWorkingHoursProd_EOImpl extends EntityImpl {
      */
     public void setWash(String value) {
         setAttributeInternal(WASH, value);
+    }
+
+    /**
+     * Gets the attribute value for SystemId, using the alias name SystemId.
+     * @return the SystemId
+     */
+    public BigDecimal getSystemId() {
+        return (BigDecimal)getAttributeInternal(SYSTEMID);
+    }
+
+    /**
+     * Sets <code>value</code> as the attribute value for SystemId.
+     * @param value value to set the SystemId
+     */
+    public void setSystemId(BigDecimal value) {
+        setAttributeInternal(SYSTEMID, value);
     }
 
     /**

@@ -82,6 +82,6 @@
       <list n="profileList">
          <string v="PWC_CuttingWorkingHour_application1"/>
       </list>
-      <value n="Weblogic-JDBC-Auto-Sync-Key" v="false"/>
+      <value n="Weblogic-JDBC-Auto-Sync-Key" v="true"/>
    </hash>
 </jws:workspace>

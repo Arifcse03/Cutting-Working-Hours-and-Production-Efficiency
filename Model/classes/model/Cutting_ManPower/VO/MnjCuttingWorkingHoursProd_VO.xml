@@ -20,15 +20,12 @@
   <ViewAccessor
     Name="SAM_LOV_VO1"
     ViewObjectName="model.Cutting_ManPower.LOV.SAM_LOV_VO">
+    <ViewCriteriaUsage
+      Name="SAM_LOV_VOCriteria"
+      FullName="model.Cutting_ManPower.LOV.SAM_LOV_VO.SAM_LOV_VOCriteria"/>
     <ParameterMap>
-      <PIMap Variable="p_buyer_id">
-        <TransientExpression><![CDATA[BuyerId]]></TransientExpression>
-      </PIMap>
-      <PIMap Variable="p_season">
-        <TransientExpression><![CDATA[Season]]></TransientExpression>
-      </PIMap>
-      <PIMap Variable="p_style">
-        <TransientExpression><![CDATA[Style]]></TransientExpression>
+      <PIMap Variable="system_id">
+        <TransientExpression><![CDATA[SystemId]]></TransientExpression>
       </PIMap>
     </ParameterMap>
   </ViewAccessor>
@@ -92,8 +89,16 @@
        MnjCuttingWorkingHoursProd_E1.BUYER_NAME, 
        MnjCuttingWorkingHoursProd_E1.CURRENT_STYLE, 
        MnjCuttingWorkingHoursProd_E1.CURRENT_SEASON, 
-       MnjCuttingWorkingHoursProd_E1.WASH
-FROM MNJ_CUTTING_WORKING_HOURS_PROD MnjCuttingWorkingHoursProd_E1]]>
+       MnjCuttingWorkingHoursProd_E1.WASH,
+       MNJCUTTINGWORKINGHOURSPROD_E1.SYSTEM_ID,
+       ac.CUSTOMER_NAME Buyer_new,
+       h.style Style_New,
+       h.season Season_New,
+       l.color Color_New,
+       l.wash_name wash_new,
+       h.poc_id
+FROM MNJ_CUTTING_WORKING_HOURS_PROD MnjCuttingWorkingHoursProd_E1 ,xx_om_poc_h_t h, xx_om_poc_l_t l, ar_customers ac
+where  MNJCUTTINGWORKINGHOURSPROD_E1.SYSTEM_ID=l.system_id and l.poc_id=h.poc_id and h.buyer_id=ac.CUSTOMER_ID]]>
   </SQLQuery>
   <EntityUsage
     Name="MnjCuttingWorkingHoursProd_E1"
@@ -335,4 +340,100 @@ FROM MNJ_CUTTING_WORKING_HOURS_PROD MnjCuttingWorkingHoursProd_E1]]>
     AliasName="WASH"
     EntityAttrName="Wash"
     EntityUsage="MnjCuttingWorkingHoursProd_E1"/>
+  <ViewAttribute
+    Name="SystemId"
+    PrecisionRule="true"
+    EntityAttrName="SystemId"
+    EntityUsage="MnjCuttingWorkingHoursProd_E1"
+    AliasName="SYSTEM_ID"/>
+  <ViewAttribute
+    Name="BuyerNew"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="BUYER_NEW"
+    Expression="BUYER_NEW"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="StyleNew"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="100"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="STYLE_NEW"
+    Expression="STYLE_NEW"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SeasonNew"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="30"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="SEASON_NEW"
+    Expression="SEASON_NEW"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ColorNew"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="30"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="COLOR_NEW"
+    Expression="COLOR_NEW"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="WashNew"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="100"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="WASH_NEW"
+    Expression="WASH_NEW"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PocId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="POC_ID"
+    Expression="POC_ID"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="39"/>
+    </DesignTime>
+  </ViewAttribute>
 </ViewObject>

@@ -160,107 +160,39 @@
                           rowSelection="single" id="t1" width="100%"
                           binding="#{Main_Bean.productionTable}"
                           partialTriggers="::cb11 ::cb3">
+                  <af:column headerText="System Id"
+                             id="c4" align="center" sortable="true"
+                             filterable="true" sortProperty="SystemId">
+                    <af:outputText value="#{row.SystemId}" id="ot3"/>
+                  </af:column>
+                  <af:column headerText="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.PocId.label}"
+                             id="c11" visible="false">
+                    <af:outputText value="#{row.PocId}" id="ot9"/>
+                  </af:column>
                   <af:column headerText="Buyer"
+                             id="c5" align="center" sortable="true"
+                             filterable="true" sortProperty="BuyerNew">
+                    <af:outputText value="#{row.BuyerNew}" id="ot4"/>
+                  </af:column>
+                  <af:column headerText="Style"
+                             id="c35" align="center" sortable="true"
+                             filterable="true" sortProperty="StyleNew">
+                    <af:outputText value="#{row.StyleNew}" id="ot10"/>
+                  </af:column>
+                  <af:column headerText="Season"
+                             id="c8" align="center" sortable="true"
+                             filterable="true" sortProperty="SeasonNew">
+                    <af:outputText value="#{row.SeasonNew}" id="ot6"/>
+                  </af:column>
+                  <af:column headerText="Color"
                              id="c9" align="center" sortable="true"
-                             filterable="true" sortProperty="BuyerName">
-                    <af:inputText value="#{row.bindings.BuyerName.inputValue}"
-                                  label="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.BuyerName.label}"
-                                  required="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.BuyerName.mandatory}"
-                                  columns="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.BuyerName.displayWidth}"
-                                  maximumLength="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.BuyerName.precision}"
-                                  shortDesc="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.BuyerName.tooltip}"
-                                  id="it16" readOnly="true">
-                      <f:validator binding="#{row.bindings.BuyerName.validator}"/>
-                    </af:inputText>
-                  </af:column>
-                  <af:column sortProperty="BuyerId" filterable="true"
-                             sortable="true"
-                             headerText="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.BuyerId.label}"
-                             id="c8" rendered="false" align="center">
-                    <af:inputText value="#{row.bindings.BuyerId.inputValue}"
-                                  label="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.BuyerId.label}"
-                                  required="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.BuyerId.mandatory}"
-                                  columns="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.BuyerId.displayWidth}"
-                                  maximumLength="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.BuyerId.precision}"
-                                  shortDesc="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.BuyerId.tooltip}"
-                                  id="it10">
-                      <f:validator binding="#{row.bindings.BuyerId.validator}"/>
-                      <af:convertNumber groupingUsed="false"
-                                        pattern="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.BuyerId.format}"/>
-                    </af:inputText>
-                  </af:column>
-                  <af:column sortProperty="Style" filterable="true"
-                             sortable="true"
-                             headerText="Style"
-                             id="c5" align="center">
-                    <af:inputText value="#{row.bindings.Style.inputValue}"
-                                  label="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.Style.label}"
-                                  required="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.Style.mandatory}"
-                                  columns="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.Style.displayWidth}"
-                                  maximumLength="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.Style.precision}"
-                                  shortDesc="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.Style.tooltip}"
-                                  id="it12" readOnly="true">
-                      <f:validator binding="#{row.bindings.Style.validator}"/>
-                    </af:inputText>
-                  </af:column>
-                  <af:column headerText="Current Style"
-                             id="c10" sortProperty="CurrentStyle"
-                             sortable="true" filterable="true" align="center">
-                    <af:inputText value="#{row.bindings.CurrentStyle.inputValue}"
-                                  label="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.CurrentStyle.label}"
-                                  required="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.CurrentStyle.mandatory}"
-                                  columns="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.CurrentStyle.displayWidth}"
-                                  maximumLength="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.CurrentStyle.precision}"
-                                  shortDesc="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.CurrentStyle.tooltip}"
-                                  id="it17" readOnly="true">
-                      <f:validator binding="#{row.bindings.CurrentStyle.validator}"/>
-                    </af:inputText>
-                  </af:column>
-                  <af:column sortProperty="Season" filterable="true"
-                             sortable="true"
-                             headerText="Season"
-                             id="c4" align="center">
-                    <af:inputText value="#{row.bindings.Season.inputValue}"
-                                  label="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.Season.label}"
-                                  required="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.Season.mandatory}"
-                                  columns="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.Season.displayWidth}"
-                                  maximumLength="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.Season.precision}"
-                                  shortDesc="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.Season.tooltip}"
-                                  id="it14" readOnly="true">
-                      <f:validator binding="#{row.bindings.Season.validator}"/>
-                    </af:inputText>
-                  </af:column>
-                  <af:column headerText="Current Season"
-                             id="c11" sortable="true" filterable="true"
-                             sortProperty="CurrentSeason" align="center">
-                    <af:inputText value="#{row.bindings.CurrentSeason.inputValue}"
-                                  label="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.CurrentSeason.label}"
-                                  required="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.CurrentSeason.mandatory}"
-                                  columns="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.CurrentSeason.displayWidth}"
-                                  maximumLength="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.CurrentSeason.precision}"
-                                  shortDesc="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.CurrentSeason.tooltip}"
-                                  id="it18" readOnly="true">
-                      <f:validator binding="#{row.bindings.CurrentSeason.validator}"/>
-                    </af:inputText>
-                  </af:column>
-                  <af:column sortProperty="Color" filterable="true"
-                             sortable="true"
-                             headerText="Color"
-                             id="c7" align="center">
-                    <af:inputText value="#{row.bindings.Color.inputValue}"
-                                  label="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.Color.label}"
-                                  required="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.Color.mandatory}"
-                                  columns="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.Color.displayWidth}"
-                                  maximumLength="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.Color.precision}"
-                                  shortDesc="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.Color.tooltip}"
-                                  id="it13" readOnly="true">
-                      <f:validator binding="#{row.bindings.Color.validator}"/>
-                    </af:inputText>
+                             filterable="true" sortProperty="ColorNew">
+                    <af:outputText value="#{row.ColorNew}" id="ot7"/>
                   </af:column>
                   <af:column headerText="Wash"
-                             id="c35" align="center" sortable="true"
-                             filterable="true" sortProperty="Wash">
-                    <af:outputText value="#{row.Wash}" id="ot3"/>
+                             id="c10" align="center" sortable="true"
+                             filterable="true" sortProperty="WashNew">
+                    <af:outputText value="#{row.WashNew}" id="ot8"/>
                   </af:column>
                   <af:column sortProperty="ProductionQty" filterable="true"
                              sortable="true" headerText="Production Qty" id="c1"
@@ -290,7 +222,8 @@
                                           columns="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.Sam.displayWidth}"
                                           shortDesc="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.Sam.tooltip}"
                                           valueChangeListener="#{Main_Bean.SAM_VC}"
-                                          autoSubmit="true">
+                                          autoSubmit="true"
+                                          partialTriggers="ot3">
                       <f:validator binding="#{row.bindings.Sam.validator}"/>
                       <af:convertNumber groupingUsed="false"
                                         pattern="#{bindings.MnjCuttingWorkingHoursProd_VO1.hints.Sam.format}"/>

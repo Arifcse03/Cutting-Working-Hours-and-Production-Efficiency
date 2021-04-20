@@ -168,21 +168,22 @@ public class Cutting_ManPower_AMImpl extends ApplicationModuleImpl implements Cu
                 vo_Line4.next();
                 vo_Line4.insertRow(row);
                 row.setNewRowState(Row.STATUS_INITIALIZED);
-
+                row.setAttribute("SystemId",
+                                 populatevo.getCurrentRow().getAttribute("SystemId"));  
                 row.setAttribute("BuyerId",
                                  populatevo.getCurrentRow().getAttribute("BuyerId"));
-                row.setAttribute("BuyerName",
-                                 populatevo.getCurrentRow().getAttribute("BuyerName"));
-                row.setAttribute("Style",
-                                 populatevo.getCurrentRow().getAttribute("Style"));
-                row.setAttribute("CurrentStyle",
-                                 populatevo.getCurrentRow().getAttribute("CurrentStyle"));
-                row.setAttribute("Season",
-                                 populatevo.getCurrentRow().getAttribute("Season"));
-                row.setAttribute("CurrentSeason",
-                                 populatevo.getCurrentRow().getAttribute("CurrentSeason"));
-                row.setAttribute("Color",
-                                 populatevo.getCurrentRow().getAttribute("Color"));
+                //row.setAttribute("BuyerName",
+                               //  populatevo.getCurrentRow().getAttribute("BuyerName"));
+               // row.setAttribute("Style",
+                               ///  populatevo.getCurrentRow().getAttribute("Style"));
+               // row.setAttribute("CurrentStyle",
+                               //  populatevo.getCurrentRow().getAttribute("CurrentStyle"));
+               /// row.setAttribute("Season",
+                               ///  populatevo.getCurrentRow().getAttribute("Season"));
+               // row.setAttribute("CurrentSeason",
+                                // populatevo.getCurrentRow().getAttribute("CurrentSeason"));
+                //row.setAttribute("Color",
+                                 //populatevo.getCurrentRow().getAttribute("Color"));
                 row.setAttribute("ProductionQty",
                                  populatevo.getCurrentRow().getAttribute("ProductionQty"));
                 row.setAttribute("Wash",
@@ -230,6 +231,8 @@ public class Cutting_ManPower_AMImpl extends ApplicationModuleImpl implements Cu
 
     public void save() {
         getDBTransaction().commit();
+        ViewObject vo=getMnjCuttingWorkingHoursProd_VO1();
+        vo.executeQuery();
 
         TotalProducedMins_Calc();
     }

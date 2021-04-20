@@ -44,7 +44,9 @@
     <TransientExpression><![CDATA[adf.context.sessionScope.DocDate]]></TransientExpression>
   </Variable>
   <SQLQuery>
-    <![CDATA[select DP.BUYER_ID,DP.BUYER_NAME,DP.STYLE,DP.CURRENT_STYLE,DP.SEASON,DP.CURRENT_SEASON,DP.COLOR,DP.PRODUCTION_QTY,DP.WASH,FindLastSAM(DP.BUYER_ID,DP.STYLE,DP.SEASON,DP.COLOR,DP.WASH) sam, DP.PRODUCTION_QTY*FindLastSAM(DP.BUYER_ID,DP.STYLE,DP.SEASON,DP.COLOR,DP.WASH) produced_min
+    <![CDATA[/* COMMENT OUT ON 20 APRIL 2021 FOR RESTRUCTURING NEED
+
+select DP.BUYER_ID,DP.BUYER_NAME,DP.STYLE,DP.CURRENT_STYLE,DP.SEASON,DP.CURRENT_SEASON,DP.COLOR,DP.PRODUCTION_QTY,DP.WASH,FindLastSAM(DP.BUYER_ID,DP.STYLE,DP.SEASON,DP.COLOR,DP.WASH) sam, DP.PRODUCTION_QTY*FindLastSAM(DP.BUYER_ID,DP.STYLE,DP.SEASON,DP.COLOR,DP.WASH) produced_min
 from
 (SELECT   h.buyer_id, hp.known_as buyer_name, h.style style,
          (SELECT DECODE (stylelineeo.track_basis,
@@ -135,7 +137,44 @@ GROUP BY h.buyer_id,
          h.range_date,
          mcv.value_description,
          hp.known_as,
-         msib.description) DP]]>
+         msib.description) DP  */
+
+
+
+SELECT b.BUYER_ID,
+AR.CUSTOMER_NAME BUYER_NAME,
+b.STYLE,
+B.SEASON,
+B.COLOR,
+SUM (l.production) PRODUCTION_QTY,
+B.WASH_NAME WASH,
+FindLastSAM_V2 (B.SYSTEM_ID) sam,
+SUM (l.production) * FindLastSAM_V2 (B.SYSTEM_ID) produced_min,
+B.SYSTEM_ID
+FROM mnj_mfg_rangeprogram h,
+mnj_mfg_range_obline l,
+XX_ORDER_INFO_V B,
+AR_CUSTOMERS AR
+WHERE h.range_id = l.range_id
+AND B.bpo_id = l.bpo_id
+AND AR.CUSTOMER_ID = B.buyer_ID
+AND H.DIVISION_ID=:p_org_id
+ AND TRUNC (h.range_date) = TO_DATE (:p_date, 'YYYY/MM/DD HH24:MI:SS')
+AND NOT EXISTS
+(SELECT 1
+FROM mnj_cutting_working_hours_h wh,
+mnj_cutting_working_hours_prod wl
+WHERE wh.header_id = wl.header_id
+AND B.SYSTEM_ID = wl.system_id
+AND TRUNC (h.range_date) = TRUNC (wh.document_date)
+AND h.division_id = wh.org_id)
+GROUP BY b.BUYER_ID,
+AR.CUSTOMER_NAME,
+b.STYLE,
+B.SEASON,
+B.COLOR,
+B.WASH_NAME,
+B.SYSTEM_ID]]>
   </SQLQuery>
   <ViewAttribute
     Name="BuyerId"
@@ -182,21 +221,6 @@ GROUP BY h.buyer_id,
     </DesignTime>
   </ViewAttribute>
   <ViewAttribute
-    Name="CurrentStyle"
-    IsUpdateable="false"
-    IsPersistent="false"
-    PrecisionRule="true"
-    Precision="250"
-    Type="java.lang.String"
-    ColumnType="VARCHAR2"
-    AliasName="CURRENT_STYLE"
-    Expression="CURRENT_STYLE"
-    SQLType="VARCHAR">
-    <DesignTime>
-      <Attr Name="_DisplaySize" Value="250"/>
-    </DesignTime>
-  </ViewAttribute>
-  <ViewAttribute
     Name="Season"
     IsUpdateable="false"
     IsPersistent="false"
@@ -206,21 +230,6 @@ GROUP BY h.buyer_id,
     ColumnType="VARCHAR2"
     AliasName="SEASON"
     Expression="SEASON"
-    SQLType="VARCHAR">
-    <DesignTime>
-      <Attr Name="_DisplaySize" Value="250"/>
-    </DesignTime>
-  </ViewAttribute>
-  <ViewAttribute
-    Name="CurrentSeason"
-    IsUpdateable="false"
-    IsPersistent="false"
-    PrecisionRule="true"
-    Precision="250"
-    Type="java.lang.String"
-    ColumnType="VARCHAR2"
-    AliasName="CURRENT_SEASON"
-    Expression="CURRENT_SEASON"
     SQLType="VARCHAR">
     <DesignTime>
       <Attr Name="_DisplaySize" Value="250"/>
@@ -293,6 +302,20 @@ GROUP BY h.buyer_id,
     ColumnType="NUMBER"
     AliasName="PRODUCED_MIN"
     Expression="PRODUCED_MIN"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="39"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SystemId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="SYSTEM_ID"
+    Expression="SYSTEM_ID"
     SQLType="NUMERIC">
     <DesignTime>
       <Attr Name="_DisplaySize" Value="39"/>
