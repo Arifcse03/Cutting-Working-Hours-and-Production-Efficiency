@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE Association SYSTEM "jbo_03_01.dtd">
+<!---->
+<Association
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="MnjCuttingWorkinghrsProdFkAssoc"
+  Version="11.1.1.62.29"
+  InheritPersonalization="true">
+  <DesignTime>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <AssociationEnd
+    Name="MnjCuttingWorkingHoursH_EO"
+    Cardinality="1"
+    Source="true"
+    Owner="model.Cutting_ManPower.EO.MnjCuttingWorkingHoursH_EO">
+    <DesignTime>
+      <Attr Name="_aggregation" Value="0"/>
+      <Attr Name="_finderName" Value="MnjCuttingWorkingHoursH_EO"/>
+      <Attr Name="_foreignKey"
+        Value="model.Cutting_ManPower.EO.MnjCuttingWorkingHoursH_EO.MnjCuttingWorkingHoursHPk"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item
+        Value="model.Cutting_ManPower.EO.MnjCuttingWorkingHoursH_EO.HeaderId"/>
+    </AttrArray>
+  </AssociationEnd>
+  <AssociationEnd
+    Name="MnjCuttingWorkingHoursProd_EO"
+    Cardinality="-1"
+    Owner="model.Cutting_ManPower.EO.MnjCuttingWorkingHoursProd_EO">
+    <DesignTime>
+      <Attr Name="_aggregation" Value="0"/>
+      <Attr Name="_finderName" Value="MnjCuttingWorkingHoursProd_EO"/>
+      <Attr Name="_foreignKey"
+        Value="model.Cutting_ManPower.EO.MnjCuttingWorkingHoursProd_EO.MnjCuttingWorkinghrsProdFk"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item
+        Value="model.Cutting_ManPower.EO.MnjCuttingWorkingHoursProd_EO.HeaderId"/>
+    </AttrArray>
+  </AssociationEnd>
+</Association>

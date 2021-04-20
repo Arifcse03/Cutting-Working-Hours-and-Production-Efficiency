@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.62.29" id="QueryPGPageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="MnjCuttingWorkingHoursH_VO1" RangeSize="25"
+              DataControl="Cutting_ManPower_AMDataControl"
+              id="MnjCuttingWorkingHoursH_VO1Iterator"/>
+    <searchRegion Binds="MnjCuttingWorkingHoursH_VO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="MnjCuttingWorkingHoursH_VO1Query"/>
+    <invokeAction Binds="setSessionValues" id="setSession" Refresh="always"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="MnjCuttingWorkingHoursH_VO1Iterator"
+          id="MnjCuttingWorkingHoursH_VO1">
+      <nodeDefinition DefName="model.Cutting_ManPower.VO.MnjCuttingWorkingHoursH_VO"
+                      Name="MnjCuttingWorkingHoursH_VO10">
+        <AttrNames>
+          <Item Value="DocumentNo"/>
+          <Item Value="DocumentDate"/>
+          <Item Value="TotalProduction"/>
+          <Item Value="TotalProducedMinutes"/>
+          <Item Value="TotalAttendedMinutes"/>
+          <Item Value="Efficiency"/>
+          <Item Value="OperatingUnit"/>
+          <Item Value="TotalAttendedMins"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="MnjCuttingWorkingHoursH_VO1Iterator" id="CreateInsert"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action IterBinding="MnjCuttingWorkingHoursH_VO1Iterator"
+            id="setCurrentRowWithKey" RequiresUpdateModel="false"
+            Action="setCurrentRowWithKey">
+      <NamedData NDName="rowKey" NDType="java.lang.String"/>
+    </action>
+    <methodAction id="setSessionValues"
+                  InstanceName="Cutting_ManPower_AMDataControl.dataProvider"
+                  DataControl="Cutting_ManPower_AMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="setSessionValues" IsViewObjectMethod="false">
+      <NamedData NDName="orgId" NDValue="#{viewScope.OrgId}"
+                 NDType="java.lang.String"/>
+      <NamedData NDName="userId" NDValue="#{viewScope.UserId}"
+                 NDType="java.lang.String"/>
+      <NamedData NDName="respId" NDValue="#{viewScope.RespId}"
+                 NDType="java.lang.String"/>
+      <NamedData NDName="respAppl" NDValue="#{viewScope.RespApplId}"
+                 NDType="java.lang.String"/>
+    </methodAction>
+    <action IterBinding="MnjCuttingWorkingHoursH_VO1Iterator" id="Delete"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="Cutting_ManPower_AMDataControl"/>
+  </bindings>
+</pageDefinition>

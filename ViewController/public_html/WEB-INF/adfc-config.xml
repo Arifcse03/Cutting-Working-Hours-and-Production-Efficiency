@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <view id="QueryPG">
+    <page>/QueryPG.jspx</page>
+    <input-page-parameter>
+      <from-value>#{param.ParamOrgId}</from-value>
+      <to-value>#{viewScope.OrgId}</to-value>
+    </input-page-parameter>
+    <input-page-parameter>
+      <from-value>#{param.ParamUserId}</from-value>
+      <to-value>#{viewScope.UserId}</to-value>
+    </input-page-parameter>
+    <input-page-parameter>
+      <from-value>#{param.ParamRespId}</from-value>
+      <to-value>#{viewScope.RespId}</to-value>
+    </input-page-parameter>
+    <input-page-parameter>
+      <from-value>#{param.ParamRespApplId}</from-value>
+      <to-value>#{viewScope.RespApplId}</to-value>
+    </input-page-parameter>
+  </view>
+  <view id="CreatePG">
+    <page>/CreatePG.jspx</page>
+  </view>
+  <control-flow-rule id="__5">
+    <from-activity-id id="__6">QueryPG</from-activity-id>
+    <control-flow-case id="__8">
+      <from-outcome id="__13">GotoCreate</from-outcome>
+      <to-activity-id id="__7">CreatePG</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__9">
+    <from-activity-id id="__10">CreatePG</from-activity-id>
+    <control-flow-case id="__11">
+      <from-outcome id="__14">BacktoSearch</from-outcome>
+      <to-activity-id id="__12">QueryPG</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <managed-bean id="__1">
+    <managed-bean-name id="__3">Main_Bean</managed-bean-name>
+    <managed-bean-class id="__4">model.Cutting_ManPower.Main_Bean</managed-bean-class>
+    <managed-bean-scope id="__2">request</managed-bean-scope>
+  </managed-bean>
+</adfc-config>

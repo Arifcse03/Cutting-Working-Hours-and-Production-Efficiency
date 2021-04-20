@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.62.29" id="CreatePGPageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="MnjCuttingWorkingHoursH_VO1" RangeSize="25"
+              DataControl="Cutting_ManPower_AMDataControl"
+              id="MnjCuttingWorkingHoursH_VO1Iterator"/>
+    <iterator Binds="MnjCuttingWorkingHoursProd_VO1" RangeSize="25"
+              DataControl="Cutting_ManPower_AMDataControl"
+              id="MnjCuttingWorkingHoursProd_VO1Iterator"/>
+    <searchRegion Binds="MnjCuttingWorkingHoursProd_VO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="MnjCuttingWorkingHoursProd_VO1Query"/>
+    <iterator Binds="MnjCuttingWorkingHoursL_VO1" RangeSize="25"
+              DataControl="Cutting_ManPower_AMDataControl"
+              id="MnjCuttingWorkingHoursL_VO1Iterator"/>
+    <searchRegion Binds="MnjCuttingWorkingHoursL_VO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="MnjCuttingWorkingHoursL_VO1Query"/>
+    <iterator Binds="MnjCuttingOffStandardL_VO1" RangeSize="25"
+              DataControl="Cutting_ManPower_AMDataControl"
+              id="MnjCuttingOffStandardL_VO1Iterator"/>
+    <searchRegion Binds="MnjCuttingOffStandardL_VO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="MnjCuttingOffStandardL_VO1Query"/>
+    <iterator Binds="MnjCuttingOffStandardD_VO1" RangeSize="25"
+              DataControl="Cutting_ManPower_AMDataControl"
+              id="MnjCuttingOffStandardD_VO1Iterator"/>
+    <searchRegion Binds="MnjCuttingOffStandardD_VO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="MnjCuttingOffStandardD_VO1Query"/>
+    <iterator Binds="Code_Description_PopVO1" RangeSize="25"
+              DataControl="Cutting_ManPower_AMDataControl"
+              id="Code_Description_PopVO1Iterator"/>
+    <searchRegion Binds="Code_Description_PopVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="Code_Description_PopVO1Query"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="MnjCuttingWorkingHoursH_VO1Iterator"
+                     id="DocumentNo">
+      <AttrNames>
+        <Item Value="DocumentNo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjCuttingWorkingHoursH_VO1Iterator"
+                     id="DocumentDate">
+      <AttrNames>
+        <Item Value="DocumentDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjCuttingWorkingHoursH_VO1Iterator"
+                     id="TotalProduction">
+      <AttrNames>
+        <Item Value="TotalProduction"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjCuttingWorkingHoursH_VO1Iterator"
+                     id="TotalProducedMinutes">
+      <AttrNames>
+        <Item Value="TotalProducedMinutes"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjCuttingWorkingHoursH_VO1Iterator"
+                     id="TotalAttendedMinutes">
+      <AttrNames>
+        <Item Value="TotalAttendedMinutes"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjCuttingWorkingHoursH_VO1Iterator"
+                     id="Efficiency">
+      <AttrNames>
+        <Item Value="Efficiency"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjCuttingWorkingHoursH_VO1Iterator"
+                     id="Remarks">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjCuttingWorkingHoursH_VO1Iterator"
+                     id="OperatingUnit">
+      <AttrNames>
+        <Item Value="OperatingUnit"/>
+      </AttrNames>
+    </attributeValues>
+    <action id="Rollback" RequiresUpdateModel="false"
+            Action="rollbackTransaction"
+            DataControl="Cutting_ManPower_AMDataControl"/>
+    <tree IterBinding="MnjCuttingWorkingHoursProd_VO1Iterator"
+          id="MnjCuttingWorkingHoursProd_VO1">
+      <nodeDefinition DefName="model.Cutting_ManPower.VO.MnjCuttingWorkingHoursProd_VO"
+                      Name="MnjCuttingWorkingHoursProd_VO10">
+        <AttrNames>
+          <Item Value="BuyerId"/>
+          <Item Value="Style"/>
+          <Item Value="Season"/>
+          <Item Value="Color"/>
+          <Item Value="Sam"/>
+          <Item Value="ProductionQty"/>
+          <Item Value="ProducedMin"/>
+          <Item Value="Remarks"/>
+          <Item Value="BuyerName"/>
+          <Item Value="CurrentStyle"/>
+          <Item Value="CurrentSeason"/>
+          <Item Value="Wash"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="Populate"
+                  InstanceName="Cutting_ManPower_AMDataControl.dataProvider"
+                  DataControl="Cutting_ManPower_AMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="Populate" IsViewObjectMethod="false"/>
+    <tree IterBinding="MnjCuttingWorkingHoursL_VO1Iterator"
+          id="MnjCuttingWorkingHoursL_VO1">
+      <nodeDefinition DefName="model.Cutting_ManPower.VO.MnjCuttingWorkingHoursL_VO"
+                      Name="MnjCuttingWorkingHoursL_VO10">
+        <AttrNames>
+          <Item Value="WorkingHourBasic"/>
+          <Item Value="ManpowerBasic"/>
+          <Item Value="WorkingHourOvertime"/>
+          <Item Value="ManpowerOvertime"/>
+          <Item Value="WorkingHourExtraot1"/>
+          <Item Value="ManPowerExtraot1"/>
+          <Item Value="WorkingHourExtraot2"/>
+          <Item Value="ManPowerExtraot2"/>
+          <Item Value="TotalAttendedMinutes"/>
+          <Item Value="Total"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="MnjCuttingWorkingHoursL_VO1Iterator" id="CreateInsert"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action IterBinding="MnjCuttingWorkingHoursL_VO1Iterator" id="Delete"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <tree IterBinding="MnjCuttingOffStandardL_VO1Iterator"
+          id="MnjCuttingOffStandardL_VO1">
+      <nodeDefinition DefName="model.Cutting_ManPower.VO.MnjCuttingOffStandardL_VO"
+                      Name="MnjCuttingOffStandardL_VO10">
+        <AttrNames>
+          <Item Value="TotalStandad"/>
+          <Item Value="Remarks"/>
+          <Item Value="LineId"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="MnjCuttingOffStandardD_VO1Iterator"
+          id="MnjCuttingOffStandardD_VO1">
+      <nodeDefinition DefName="model.Cutting_ManPower.VO.MnjCuttingOffStandardD_VO"
+                      Name="MnjCuttingOffStandardD_VO10">
+        <AttrNames>
+          <Item Value="CodeStandard"/>
+          <Item Value="Description"/>
+          <Item Value="TotalStandard"/>
+          <Item Value="Remarks"/>
+          <Item Value="Area"/>
+          <Item Value="LineId"/>
+          <Item Value="DetailId"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="MnjCuttingOffStandardL_VO1Iterator" id="CreateInsert1"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action IterBinding="MnjCuttingOffStandardL_VO1Iterator" id="Delete1"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <action IterBinding="MnjCuttingOffStandardD_VO1Iterator" id="CreateInsert2"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action IterBinding="MnjCuttingOffStandardD_VO1Iterator" id="Delete2"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <attributeValues IterBinding="MnjCuttingWorkingHoursH_VO1Iterator"
+                     id="TotalAttendedMins">
+      <AttrNames>
+        <Item Value="TotalAttendedMins"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="TotalProducedMins_Calc"
+                  InstanceName="Cutting_ManPower_AMDataControl.dataProvider"
+                  DataControl="Cutting_ManPower_AMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="TotalProducedMins_Calc"
+                  IsViewObjectMethod="false"/>
+    <methodAction id="save"
+                  InstanceName="Cutting_ManPower_AMDataControl.dataProvider"
+                  DataControl="Cutting_ManPower_AMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="save" IsViewObjectMethod="false"/>
+    <tree IterBinding="Code_Description_PopVO1Iterator"
+          id="Code_Description_PopVO1">
+      <nodeDefinition DefName="model.Cutting_ManPower.VO.Code_Description_PopVO"
+                      Name="Code_Description_PopVO10">
+        <AttrNames>
+          <Item Value="Code"/>
+          <Item Value="Description"/>
+          <Item Value="Selection" Binds="Selection"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <button IterBinding="Code_Description_PopVO1Iterator" id="Selection"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="Selection"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <methodAction id="CodeDescPopulate"
+                  InstanceName="Cutting_ManPower_AMDataControl.dataProvider"
+                  DataControl="Cutting_ManPower_AMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="CodeDescPopulate" IsViewObjectMethod="false"/>
+    <action IterBinding="MnjCuttingWorkingHoursProd_VO1Iterator" id="Delete3"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+  </bindings>
+</pageDefinition>
