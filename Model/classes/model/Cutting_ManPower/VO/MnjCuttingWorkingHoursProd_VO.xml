@@ -52,7 +52,7 @@
       Hint="showAndExecute"/>
   </ListBinding>
   <SQLQuery>
-    <![CDATA[SELECT MnjCuttingWorkingHoursProd_E1.LINE_ID, 
+    <![CDATA[SELECT distinct MnjCuttingWorkingHoursProd_E1.LINE_ID, 
        MnjCuttingWorkingHoursProd_E1.HEADER_ID, 
        MnjCuttingWorkingHoursProd_E1.ORG_ID, 
        MnjCuttingWorkingHoursProd_E1.ORGANIZATION_ID, 
