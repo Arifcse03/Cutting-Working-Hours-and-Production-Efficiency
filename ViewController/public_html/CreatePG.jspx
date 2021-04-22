@@ -213,7 +213,7 @@
                   </af:column>
                   <af:column headerText="SAM"
                              id="c12" align="center" sortable="true"
-                             filterable="true" sortProperty="Sam">
+                             filterable="true" sortProperty="Sam" width="150">
                     <af:inputListOfValues id="samId"
                                           popupTitle="Search and Select: SAM"
                                           value="#{row.bindings.Sam.inputValue}"

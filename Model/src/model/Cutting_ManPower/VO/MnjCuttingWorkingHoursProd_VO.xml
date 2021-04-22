@@ -43,10 +43,11 @@
       <Item Value="Sam"/>
     </AttrArray>
     <AttrArray Name="ListDisplayAttrNames">
-      <Item Value="HeaderNo"/>
-      <Item Value="OptionNo"/>
-      <Item Value="VersionNo"/>
       <Item Value="Sam"/>
+      <Item Value="SystemId"/>
+      <Item Value="VersionNo"/>
+      <Item Value="OptionNo"/>
+      <Item Value="HeaderNo"/>
     </AttrArray>
     <DisplayCriteria
       Hint="showAndExecute"/>

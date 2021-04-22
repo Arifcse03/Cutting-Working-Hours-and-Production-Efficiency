@@ -47,18 +47,20 @@
                   NVL (opl.option_no, '-') option_no,
                   NVL (opl.version_no, '-') version_no,
                   SUM (opl.total_sam_value) sam,
-                  b.system_id
+                  l.system_id
     FROM mnj_mfg_operation_master_h oph,
-         mnj_mfg_operation_master_l opl,
-         XX_ORDER_INFO_V B
-   WHERE     oph.header_id = opl.header_id
-         AND OPH.POC_ID = B.POC_ID
-         AND opl.dept_name = 'Cutting'
-         AND b.system_id = :system_id
+mnj_mfg_operation_master_l opl,
+xx_om_poc_h_t H,
+xx_om_poc_l_t L
+WHERE oph.header_id = opl.header_id
+AND OPH.POC_ID = H.POC_ID
+and h.poc_id=l.poc_id
+AND opl.dept_name = 'Cutting'
+AND l.system_id = :system_id
 GROUP BY oph.header_no,
-         NVL (opl.option_no, '-'),
-         NVL (opl.version_no, '-'),
-         system_id]]>
+NVL (opl.option_no, '-'),
+NVL (opl.version_no, '-'),
+system_id]]>
   </SQLQuery>
   <ViewAttribute
     Name="HeaderNo"
