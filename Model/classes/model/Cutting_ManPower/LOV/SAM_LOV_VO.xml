@@ -24,7 +24,7 @@
     Kind="where"
     Type="java.lang.String"/>
   <SQLQuery>
-    <![CDATA[/*SELECT DISTINCT oph.header_no, NVL (opl.option_no, '-') option_no,
+    <![CDATA[/* SELECT DISTINCT oph.header_no, NVL (opl.option_no, '-') option_no,
                 NVL (opl.version_no, '-') version_no,
                 SUM (opl.total_sam_value) sam
            FROM mnj_mfg_operation_master_h oph,
@@ -39,10 +39,10 @@
                 NVL (opl.version_no, '-'),
                 oph.style_name,
                 oph.season,
-                oph.customer_id*/
+                oph.customer_id   
 
 
-/* Formatted on 4/20/2021 2:39:15 PM (QP5 v5.256.13226.35510)  by wasi sir */
+Formatted on 4/20/2021 2:39:15 PM (QP5 v5.256.13226.35510)  by wasi sir 
   SELECT DISTINCT oph.header_no,
                   NVL (opl.option_no, '-') option_no,
                   NVL (opl.version_no, '-') version_no,
@@ -60,7 +60,24 @@ AND l.system_id = :system_id
 GROUP BY oph.header_no,
 NVL (opl.option_no, '-'),
 NVL (opl.version_no, '-'),
-system_id]]>
+system_id */
+
+
+
+/* Formatted on 4/25/2021 10:13:49 AM (QP5 v5.256.13226.35510) */
+SELECT DISTINCT oph.header_no,
+                NVL (opl.option_no, '-') option_no,
+                NVL (opl.version_no, '-') version_no,
+                opl.total_sam_value sam
+  FROM mnj_mfg_operation_master_h oph,
+       mnj_mfg_operation_master_l opl,
+       XX_OM_POC_H_T H,
+       XX_OM_POC_L_T L
+ WHERE     oph.header_id = opl.header_id
+       AND OPH.POC_ID = H.POC_ID
+       AND H.poc_id = L.poc_id
+       AND opl.dept_name = 'Cutting'
+       AND L.system_id = :system_id]]>
   </SQLQuery>
   <ViewAttribute
     Name="HeaderNo"
@@ -161,7 +178,6 @@ system_id]]>
     Type="java.math.BigDecimal"
     ColumnType="NUMBER"
     AliasName="SYSTEM_ID"
-    Expression="SYSTEM_ID"
     SQLType="NUMERIC">
     <DesignTime>
       <Attr Name="_DisplaySize" Value="39"/>
